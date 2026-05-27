@@ -20,12 +20,22 @@ const AppProvider = ({children}) => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [movie, setMovie] = useState([])
+    const [isError, setIsError] = useState({show: "false", msg: ""})
 
     const getMovies = async(url) => {
         try{
             const res = await fetch(url)
             const data = await res.json()
             console.log(data)
+            if(data.Response === "True"){
+                setIsLoading(false)
+                setMovie(data.Search)
+            } else {
+                setIsError({
+                    show: true,
+                    msg: data.Error,
+                })
+            }
         } catch (error){
             console.log(error)
         }
@@ -39,9 +49,10 @@ const AppProvider = ({children}) => {
     }, [])
 
 
-    return <AppContext.Provider value="HEllo world">
+    return ( <AppContext.Provider value={{isLoading, isError, movie}}>
         {children}
     </AppContext.Provider>
+    )
 }
 
 // global custom hook
