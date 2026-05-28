@@ -3,6 +3,7 @@ import Home from './Home'
 import SingleMovie from './SingleMovie'
 import Error from './Error'
 import { Routes, Route } from 'react-router-dom'
+import "./App.css"
 
 const App = () => {
   return (
