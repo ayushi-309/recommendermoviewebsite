@@ -16,13 +16,13 @@ const AppContext = React.createContext()
 
 //we need to create a provider function
 
-const AppProvider = ({children}) => {
+const AppProvider = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [movie, setMovie] = useState([])
     const [isError, setIsError] = useState({show: "false", msg: ""})
 
-    const getMovies = async(url) => {
+    const getMovies = async (url) => {
         try{
             const res = await fetch(url)
             const data = await res.json()
