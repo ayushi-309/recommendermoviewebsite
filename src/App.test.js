@@ -1,8 +1,16 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { AppProvider } from './context';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders CineVerse branding and nav tabs', () => {
+  render(
+    <AppProvider>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </AppProvider>
+  );
+  const brandElement = screen.getByText(/Cine/i);
+  expect(brandElement).toBeInTheDocument();
 });
